@@ -1,5 +1,5 @@
 import axios from 'axios';
-const BASE_URL = 'https://6571f80ad61ba6fcc0141958.mockapi.io';
+const BASE_URL = 'https://65a667f274cf4207b4eff14a.mockapi.io';
 
 const api = axios.create({
   baseURL: BASE_URL,
@@ -8,7 +8,7 @@ const api = axios.create({
 export const getAccounts = async () => {
   try {
     const response = await api.get('/accounts');
-    console.log('Received accounts:', response.data);
+   
     return response;
   } catch (error) {
     console.error('Error fetching accounts:', error);
@@ -19,7 +19,6 @@ export const getAccounts = async () => {
 export const getProfiles = async accountId => {
   try {
     const response = await api.get(`/accounts/${accountId}/profiles`);
-    console.log('Received profiles:', response.data);
     return response;
   } catch (error) {
     console.error('Error fetching profiles:', error);

@@ -3,15 +3,14 @@ import { Link, useParams } from 'react-router-dom';
 import apiService from '../../Api';
 
 const ProfilesPage = () => {
-    const { accountId } = useParams();
-    console.log('accountId:', accountId);
+  const { accountId } = useParams();
   const [profiles, setProfiles] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await apiService.getProfiles(accountId);
-        setProfiles(response);
+        setProfiles(response.data);
         console.log(response);
       } catch (error) {
         console.error('Error fetching profiles:', error);

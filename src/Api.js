@@ -47,7 +47,6 @@ export const getCampaigns = async (profileId, sortBy, order) => {
         order: order,
       },
     });
-    console.log('Received campaigns:', response.data);
     return response;
   } catch (error) {
     console.error('Error fetching campaigns:', error);

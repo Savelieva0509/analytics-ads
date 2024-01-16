@@ -7,11 +7,18 @@ const ProfilesPage = () => {
   const [profiles, setProfiles] = useState([]);
   const [sortBy, setSortBy] = useState('creationDate');
   const [order, setOrder] = useState('asc');
+  const [selectedMarketplace, setSelectedMarketplace] = useState('All');
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await apiService.getProfiles(accountId, sortBy, order);
+        const response = await apiService.getProfiles(
+          accountId,
+          sortBy,
+          order,
+          selectedMarketplace !== 'All' ? 'marketplace' : undefined,
+          selectedMarketplace !== 'All' ? selectedMarketplace : undefined
+        );
         setProfiles(response.data);
         console.log(response);
       } catch (error) {
@@ -20,16 +27,33 @@ const ProfilesPage = () => {
     };
 
     fetchData();
-  }, [accountId, sortBy, order]);
+  }, [accountId, sortBy, order, selectedMarketplace]);
 
-  const handleSortChange = newSortBy => {
-    setSortBy(newSortBy);
-    setOrder(order === 'asc' ? 'desc' : 'asc');
+
+const handleSortChange = newSortBy => {
+  setSortBy(newSortBy);
+  setOrder(prevOrder => (prevOrder === 'asc' ? 'desc' : 'asc'));
   };
-
+  
+   const handleMarketplaceChange = newMarketplace => {
+     setSelectedMarketplace(newMarketplace);
+  };
+  
   return (
     <div>
       <h1>Profiles</h1>
+      <div>
+        <label>Filter by Marketplace:</label>
+        <select
+          value={selectedMarketplace}
+          onChange={e => handleMarketplaceChange(e.target.value)}
+        >
+          <option value="All">All</option>
+          <option value="Rozetka">Rozetka</option>
+          <option value="Amazon">Amazon</option>
+          <option value="AliExpress">AliExpress</option>
+        </select>
+      </div>
       <table>
         <thead>
           <tr>

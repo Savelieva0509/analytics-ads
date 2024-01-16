@@ -20,12 +20,13 @@ export const getAccounts = async (sortBy, order) => {
   }
 };
 
-export const getProfiles = async (accountId, sortBy, order) => {
+export const getProfiles = async (accountId, sortBy, order, filterBy, filterValue) => {
   try {
     const response = await api.get(`/accounts/${accountId}/profiles`, {
       params: {
         sortBy: sortBy,
         order: order,
+        [filterBy]: filterValue,
       },
     });
     return response;

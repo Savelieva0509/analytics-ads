@@ -33,7 +33,7 @@ const ProfilesPage = () => {
         <tbody>
           {profiles.map(profile => (
             <tr key={profile.profileId}>
-              <td><Link to={`/profiles/${profile.profileId}`}>{profile.country}</Link></td>
+              <td><Link to={`/profiles/${profile.profileId}/campaigns`}>{profile.country}</Link></td>
               <td>{profile.marketplace}</td>
             </tr>
           ))}

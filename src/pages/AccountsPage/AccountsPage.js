@@ -4,11 +4,13 @@ import apiService from '../../Api';
 
 const AccountsPage = () => {
   const [accounts, setAccounts] = useState([]);
+  const [sortBy, setSortBy] = useState('creationDate');
+  const [order, setOrder] = useState('asc');
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await apiService.getAccounts();
+        const response = await apiService.getAccounts(sortBy, order);
         setAccounts(response.data);
       } catch (error) {
         console.error('Error fetching accounts:', error);
@@ -16,7 +18,12 @@ const AccountsPage = () => {
     };
 
     fetchData();
-  }, []);
+  }, [sortBy, order]);
+
+  const handleSortChange = newSortBy => {
+    setSortBy(newSortBy);
+    setOrder(order === 'asc' ? 'desc' : 'asc');
+  };
 
   return (
     <div>
@@ -26,7 +33,11 @@ const AccountsPage = () => {
           <tr>
             <th>Email</th>
             <th>Auth Token</th>
-            <th>Creation Date</th>
+            <th>
+              <button onClick={() => handleSortChange('creationDate')}>
+                Sort by creation date
+              </button>
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -47,4 +58,4 @@ const AccountsPage = () => {
   );
 };
 
-export default AccountsPage
+export default AccountsPage;

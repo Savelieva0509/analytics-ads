@@ -5,11 +5,17 @@ import apiService from '../../Api';
 const CampaignsPage = () => {
   const { profileId } = useParams();
   const [campaigns, setCampaigns] = useState([]);
+  const [sortBy, setSortBy] = useState('creationDate');
+  const [order, setOrder] = useState('asc');
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await apiService.getCampaigns(profileId);
+        const response = await apiService.getCampaigns(
+          profileId,
+          sortBy,
+          order
+        );
         setCampaigns(response.data);
       } catch (error) {
         console.error('Error fetching campaigns:', error);
@@ -17,7 +23,12 @@ const CampaignsPage = () => {
     };
 
     fetchData();
-  }, [profileId]);
+  }, [profileId, sortBy, order]);
+
+  const handleSortChange = newSortBy => {
+    setSortBy(newSortBy);
+    setOrder(order === 'asc' ? 'desc' : 'asc');
+  };
 
   return (
     <div>
@@ -25,9 +36,21 @@ const CampaignsPage = () => {
       <table>
         <thead>
           <tr>
-            <th>Clicks</th>
-            <th>Cost</th>
-            <th>Date</th>
+            <th>
+              <button onClick={() => handleSortChange('clicks')}>
+                Sort by clicks
+              </button>
+            </th>
+            <th>
+              <button onClick={() => handleSortChange('cost')}>
+                Sort by cost
+              </button>
+            </th>
+            <th>
+              <button onClick={() => handleSortChange('date')}>
+                Sort by date
+              </button>
+            </th>
           </tr>
         </thead>
         <tbody>

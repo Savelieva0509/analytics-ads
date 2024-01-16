@@ -5,10 +5,14 @@ const api = axios.create({
   baseURL: BASE_URL,
 });
 
-export const getAccounts = async () => {
+export const getAccounts = async (sortBy, order) => {
   try {
-    const response = await api.get('/accounts');
-   
+    const response = await api.get('/accounts', {
+      params: {
+        sortBy: sortBy,
+        order: order,
+      },
+    });
     return response;
   } catch (error) {
     console.error('Error fetching accounts:', error);
@@ -16,9 +20,14 @@ export const getAccounts = async () => {
   }
 };
 
-export const getProfiles = async accountId => {
+export const getProfiles = async (accountId, sortBy, order) => {
   try {
-    const response = await api.get(`/accounts/${accountId}/profiles`);
+    const response = await api.get(`/accounts/${accountId}/profiles`, {
+      params: {
+        sortBy: sortBy,
+        order: order,
+      },
+    });
     return response;
   } catch (error) {
     console.error('Error fetching profiles:', error);
@@ -27,9 +36,14 @@ export const getProfiles = async accountId => {
 };
 
 
-export const getCampaigns = async profileId => {
+export const getCampaigns = async (profileId, sortBy, order) => {
   try {
-    const response = await api.get(`/profiles/${profileId}/campaigns`);
+    const response = await api.get(`/profiles/${profileId}/campaigns`, {
+      params: {
+        sortBy: sortBy,
+        order: order,
+      },
+    });
     console.log('Received campaigns:', response.data);
     return response;
   } catch (error) {

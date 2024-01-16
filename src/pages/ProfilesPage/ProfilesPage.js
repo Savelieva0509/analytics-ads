@@ -5,11 +5,13 @@ import apiService from '../../Api';
 const ProfilesPage = () => {
   const { accountId } = useParams();
   const [profiles, setProfiles] = useState([]);
+  const [sortBy, setSortBy] = useState('creationDate');
+  const [order, setOrder] = useState('asc');
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await apiService.getProfiles(accountId);
+        const response = await apiService.getProfiles(accountId, sortBy, order);
         setProfiles(response.data);
         console.log(response);
       } catch (error) {
@@ -18,7 +20,12 @@ const ProfilesPage = () => {
     };
 
     fetchData();
-  }, [accountId]);
+  }, [accountId, sortBy, order]);
+
+  const handleSortChange = newSortBy => {
+    setSortBy(newSortBy);
+    setOrder(order === 'asc' ? 'desc' : 'asc');
+  };
 
   return (
     <div>
@@ -26,14 +33,26 @@ const ProfilesPage = () => {
       <table>
         <thead>
           <tr>
-            <th>Country</th>
-            <th>Marketplace</th>
+            <th>
+              <button onClick={() => handleSortChange('country')}>
+                Sort by country
+              </button>
+            </th>
+            <th>
+              <button onClick={() => handleSortChange('marketplace')}>
+                Sort by marketplace
+              </button>
+            </th>
           </tr>
         </thead>
         <tbody>
           {profiles.map(profile => (
             <tr key={profile.profileId}>
-              <td><Link to={`/profiles/${profile.profileId}/campaigns`}>{profile.country}</Link></td>
+              <td>
+                <Link to={`/profiles/${profile.profileId}/campaigns`}>
+                  {profile.country}
+                </Link>
+              </td>
               <td>{profile.marketplace}</td>
             </tr>
           ))}

@@ -6,25 +6,36 @@ const AccountsPage = () => {
   const [accounts, setAccounts] = useState([]);
   const [sortBy, setSortBy] = useState('creationDate');
   const [order, setOrder] = useState('asc');
+  const [page, setPage] = useState(1);
+  const [limit] = useState(10);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await apiService.getAccounts(sortBy, order);
-        setAccounts(response.data);
+        const response = await apiService.getAccounts(
+          sortBy,
+          order,
+          page,
+          limit
+        );
+       setAccounts(prevAccounts =>
+         page === 1 ? response.data : [...prevAccounts, ...response.data]
+       );
       } catch (error) {
         console.error('Error fetching accounts:', error);
       }
     };
 
     fetchData();
-  }, [sortBy, order]);
+  }, [sortBy, order, page, limit]);
 
   const handleSortChange = newSortBy => {
     setSortBy(newSortBy);
     setOrder(order === 'asc' ? 'desc' : 'asc');
   };
-
+const handleLoadMore = () => {
+  setPage(prevPage => prevPage + 1);
+};
   return (
     <div>
       <h1>Accounts</h1>
@@ -54,6 +65,7 @@ const AccountsPage = () => {
           ))}
         </tbody>
       </table>
+      <button onClick={handleLoadMore}>Load More</button>
     </div>
   );
 };

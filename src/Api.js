@@ -5,12 +5,14 @@ const api = axios.create({
   baseURL: BASE_URL,
 });
 
-export const getAccounts = async (sortBy, order) => {
+export const getAccounts = async (sortBy, order, page = 1) => {
   try {
     const response = await api.get('/accounts', {
       params: {
         sortBy: sortBy,
         order: order,
+        page: page,
+        limit: 3,
       },
     });
     return response;

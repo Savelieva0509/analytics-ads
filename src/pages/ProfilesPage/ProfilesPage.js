@@ -20,7 +20,6 @@ const ProfilesPage = () => {
           selectedMarketplace !== 'All' ? selectedMarketplace : undefined
         );
         setProfiles(response.data);
-        console.log(response);
       } catch (error) {
         console.error('Error fetching profiles:', error);
       }

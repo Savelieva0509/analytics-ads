@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import apiService from '../../Api';
 
 const AccountsPage = () => {
@@ -42,9 +43,9 @@ const handleLoadMore = () => {
   setPage(prevPage => prevPage + 1);
 };
   return (
-    <div>
+    <div className="container mt-4">
       <h1>Accounts</h1>
-      <table>
+      <table className="table">
         <thead>
           <tr>
             <th>Email</th>
@@ -70,7 +71,9 @@ const handleLoadMore = () => {
           ))}
         </tbody>
       </table>
-      <button onClick={handleLoadMore}>Load More</button>
+      <button className="btn btn-primary" onClick={handleLoadMore}>
+        Load More
+      </button>
     </div>
   );
 };

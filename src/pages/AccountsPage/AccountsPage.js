@@ -9,6 +9,11 @@ const AccountsPage = () => {
   const [page, setPage] = useState(1);
   const [limit] = useState(10);
 
+  const formatDate = dateString => {
+    const options = { day: 'numeric', month: 'numeric', year: 'numeric' };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -60,7 +65,7 @@ const handleLoadMore = () => {
                 </Link>
               </td>
               <td>{account.authToken}</td>
-              <td>{account.creationDate}</td>
+              <td>{formatDate(account.creationDate)}</td>
             </tr>
           ))}
         </tbody>

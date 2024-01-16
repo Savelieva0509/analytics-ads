@@ -8,6 +8,12 @@ const CampaignsPage = () => {
   const [sortBy, setSortBy] = useState('creationDate');
   const [order, setOrder] = useState('asc');
 
+  const formatDate = dateString => {
+    const options = { day: 'numeric', month: 'numeric', year: 'numeric' };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
+
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -58,7 +64,7 @@ const CampaignsPage = () => {
             <tr key={campaign.campaignId}>
               <td>{campaign.clicks}</td>
               <td>{campaign.cost}</td>
-              <td>{campaign.date}</td>
+              <td>{formatDate(campaign.date)}</td>
             </tr>
           ))}
         </tbody>

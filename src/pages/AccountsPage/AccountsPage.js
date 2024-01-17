@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { BsArrowUp, BsArrowDown } from 'react-icons/bs';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import apiService from '../../Api';
+import './AccountsPage.css';
 
 const AccountsPage = () => {
   const [accounts, setAccounts] = useState([]);

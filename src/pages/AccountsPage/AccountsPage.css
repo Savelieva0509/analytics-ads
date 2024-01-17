@@ -1,0 +1,12 @@
+.clickable-row {
+  cursor: pointer;
+}
+
+.clickable-row:hover,
+ .clickable-row:focus {
+  outline: 4px solid rgb(194, 219, 254); 
+  border-radius: 5px;
+}
+  
+
+

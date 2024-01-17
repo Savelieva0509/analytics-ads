@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import apiService from '../../Api';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -9,6 +9,8 @@ const ProfilesPage = () => {
   const [sortBy, setSortBy] = useState('creationDate');
   const [order, setOrder] = useState('asc');
   const [selectedMarketplace, setSelectedMarketplace] = useState('All');
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,6 +36,10 @@ const ProfilesPage = () => {
     setOrder(prevOrder => (prevOrder === 'asc' ? 'desc' : 'asc'));
   };
 
+  const handleRowClick = profileId => {
+    navigate(`/profiles/${profileId}/campaigns`);
+  };
+
   const handleMarketplaceChange = newMarketplace => {
     setSelectedMarketplace(newMarketplace);
   };
@@ -54,9 +60,7 @@ const ProfilesPage = () => {
           <option value="Amazon">Amazon</option>
           <option value="AliExpress">AliExpress</option>
         </select>
-        <label htmlFor="floatingSelect">
-          Selected dy country
-        </label>
+        <label htmlFor="floatingSelect">Selected dy country</label>
       </div>
       <table className="table">
         <thead>
@@ -81,12 +85,12 @@ const ProfilesPage = () => {
         </thead>
         <tbody>
           {profiles.map(profile => (
-            <tr key={profile.profileId}>
-              <td>
-                <Link to={`/profiles/${profile.profileId}/campaigns`}>
-                  {profile.country}
-                </Link>
-              </td>
+            <tr
+              key={profile.profileId}
+              className="clickable-row"
+              onClick={() => handleRowClick(profile.profileId)}
+            >
+              <td>{profile.country}</td>
               <td>{profile.marketplace}</td>
             </tr>
           ))}

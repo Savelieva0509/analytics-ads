@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import apiService from '../../Api';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const CampaignsPage = () => {
   const { profileId } = useParams();
@@ -37,23 +38,32 @@ const CampaignsPage = () => {
   };
 
   return (
-    <div>
+    <div className="container mt-4">
       <h1>Campaigns</h1>
-      <table>
+      <table className="table">
         <thead>
           <tr>
             <th>
-              <button onClick={() => handleSortChange('clicks')}>
+              <button
+                className="btn btn-primary"
+                onClick={() => handleSortChange('clicks')}
+              >
                 Sort by clicks
               </button>
             </th>
             <th>
-              <button onClick={() => handleSortChange('cost')}>
+              <button
+                className="btn btn-primary"
+                onClick={() => handleSortChange('cost')}
+              >
                 Sort by cost
               </button>
             </th>
             <th>
-              <button onClick={() => handleSortChange('date')}>
+              <button
+                className="btn btn-primary"
+                onClick={() => handleSortChange('date')}
+              >
                 Sort by date
               </button>
             </th>

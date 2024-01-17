@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import apiService from '../../Api';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const ProfilesPage = () => {
   const { accountId } = useParams();
@@ -28,22 +29,23 @@ const ProfilesPage = () => {
     fetchData();
   }, [accountId, sortBy, order, selectedMarketplace]);
 
+  const handleSortChange = newSortBy => {
+    setSortBy(newSortBy);
+    setOrder(prevOrder => (prevOrder === 'asc' ? 'desc' : 'asc'));
+  };
 
-const handleSortChange = newSortBy => {
-  setSortBy(newSortBy);
-  setOrder(prevOrder => (prevOrder === 'asc' ? 'desc' : 'asc'));
+  const handleMarketplaceChange = newMarketplace => {
+    setSelectedMarketplace(newMarketplace);
   };
-  
-   const handleMarketplaceChange = newMarketplace => {
-     setSelectedMarketplace(newMarketplace);
-  };
-  
+
   return (
-    <div>
+    <div className="container mt-4">
       <h1>Profiles</h1>
-      <div>
-        <label>Filter by Marketplace:</label>
+      <div className="form-floating">
         <select
+          id="floatingSelect"
+          aria-label="Floating label select example"
+          className="form-select"
           value={selectedMarketplace}
           onChange={e => handleMarketplaceChange(e.target.value)}
         >
@@ -52,17 +54,26 @@ const handleSortChange = newSortBy => {
           <option value="Amazon">Amazon</option>
           <option value="AliExpress">AliExpress</option>
         </select>
+        <label htmlFor="floatingSelect">
+          Selected dy country
+        </label>
       </div>
-      <table>
+      <table className="table">
         <thead>
           <tr>
             <th>
-              <button onClick={() => handleSortChange('country')}>
+              <button
+                className="btn btn-primary"
+                onClick={() => handleSortChange('country')}
+              >
                 Sort by country
               </button>
             </th>
             <th>
-              <button onClick={() => handleSortChange('marketplace')}>
+              <button
+                className="btn btn-primary"
+                onClick={() => handleSortChange('marketplace')}
+              >
                 Sort by marketplace
               </button>
             </th>
@@ -86,5 +97,3 @@ const handleSortChange = newSortBy => {
 };
 
 export default ProfilesPage;
-
-

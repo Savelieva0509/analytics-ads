@@ -52,7 +52,10 @@ const handleLoadMore = () => {
             <th>Email</th>
             <th>Auth Token</th>
             <th>
-              <button onClick={() => handleSortChange('creationDate')}>
+              <button
+                className="btn btn-primary"
+                onClick={() => handleSortChange('creationDate')}
+              >
                 Sort by creation date
               </button>
             </th>

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import apiService from '../../Api';
+import { FaSortAmountUp, FaSortAmountDownAlt } from 'react-icons/fa';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const ProfilesPage = () => {
   const { accountId } = useParams();
   const [profiles, setProfiles] = useState([]);
-  const [sortBy, setSortBy] = useState('creationDate');
+  const [sortBy, setSortBy] = useState('country');
   const [order, setOrder] = useState('asc');
   const [selectedMarketplace, setSelectedMarketplace] = useState('All');
 
@@ -70,7 +71,11 @@ const ProfilesPage = () => {
                 className="btn btn-primary"
                 onClick={() => handleSortChange('country')}
               >
-                Sort by country
+                Sort by country{' '}
+                {sortBy === 'country' && order === 'asc' && <FaSortAmountUp />}
+                {sortBy === 'country' && order === 'desc' && (
+                  <FaSortAmountDownAlt />
+                )}
               </button>
             </th>
             <th>
@@ -78,7 +83,13 @@ const ProfilesPage = () => {
                 className="btn btn-primary"
                 onClick={() => handleSortChange('marketplace')}
               >
-                Sort by marketplace
+                Sort by marketplace{' '}
+                {sortBy === 'marketplace' && order === 'asc' && (
+                  <FaSortAmountUp />
+                )}
+                {sortBy === 'marketplace' && order === 'desc' && (
+                  <FaSortAmountDownAlt />
+                )}
               </button>
             </th>
           </tr>

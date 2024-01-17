@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { FaSortAmountUp, FaSortAmountDownAlt } from 'react-icons/fa';
 import apiService from '../../Api';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const CampaignsPage = () => {
   const { profileId } = useParams();
   const [campaigns, setCampaigns] = useState([]);
-  const [sortBy, setSortBy] = useState('creationDate');
+  const [sortBy, setSortBy] = useState('clicks');
   const [order, setOrder] = useState('asc');
 
   const formatDate = dateString => {
@@ -48,7 +49,11 @@ const CampaignsPage = () => {
                 className="btn btn-primary"
                 onClick={() => handleSortChange('clicks')}
               >
-                Sort by clicks
+                Sort by clicks{' '}
+                {sortBy === 'clicks' && order === 'asc' && <FaSortAmountUp />}
+                {sortBy === 'clicks' && order === 'desc' && (
+                  <FaSortAmountDownAlt />
+                )}
               </button>
             </th>
             <th>
@@ -56,7 +61,11 @@ const CampaignsPage = () => {
                 className="btn btn-primary"
                 onClick={() => handleSortChange('cost')}
               >
-                Sort by cost
+                Sort by cost{' '}
+                {sortBy === 'cost' && order === 'asc' && <FaSortAmountUp />}
+                {sortBy === 'cost' && order === 'desc' && (
+                  <FaSortAmountDownAlt />
+                )}
               </button>
             </th>
             <th>

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 import apiService from '../../Api';
 import { FaSortAmountUp, FaSortAmountDownAlt } from 'react-icons/fa';
+import { FaArrowLeftLong } from 'react-icons/fa6';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './ProfilesPage.css'
 
 const ProfilesPage = () => {
   const { accountId } = useParams();
@@ -44,10 +46,19 @@ const ProfilesPage = () => {
   const handleMarketplaceChange = newMarketplace => {
     setSelectedMarketplace(newMarketplace);
   };
+   const handleGoBack = () => {
+     navigate(`/`);
+   };
 
   return (
     <div className="container mt-4">
-      <h1>Profiles</h1>
+      <div className="title-container">
+        <button className="btn btn-link" onClick={handleGoBack}>
+          <FaArrowLeftLong />
+        </button>
+        <h1 className="title">Profiles</h1>
+      </div>
+
       <div className="form-floating">
         <select
           id="floatingSelect"

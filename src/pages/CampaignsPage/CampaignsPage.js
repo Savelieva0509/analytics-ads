@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import { FaArrowLeftLong } from 'react-icons/fa6';
 import { FaSortAmountUp, FaSortAmountDownAlt } from 'react-icons/fa';
 import apiService from '../../Api';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const CampaignsPage = () => {
@@ -9,6 +11,8 @@ const CampaignsPage = () => {
   const [campaigns, setCampaigns] = useState([]);
   const [sortBy, setSortBy] = useState('clicks');
   const [order, setOrder] = useState('asc');
+
+  const navigate = useNavigate();
 
   const formatDate = dateString => {
     const options = { day: 'numeric', month: 'numeric', year: 'numeric' };
@@ -38,9 +42,19 @@ const CampaignsPage = () => {
     setOrder(order === 'asc' ? 'desc' : 'asc');
   };
 
+ const handleGoBack = () => {
+   navigate(-1); 
+ };
+
+
   return (
     <div className="container mt-4">
-      <h1>Campaigns</h1>
+      <div className="title-container">
+        <button className="btn btn-link" onClick={handleGoBack}>
+          <FaArrowLeftLong />
+        </button>
+        <h1 className="title">Campaigns</h1>
+      </div>
       <table className="table">
         <thead>
           <tr>

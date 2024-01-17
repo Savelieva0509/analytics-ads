@@ -38,6 +38,7 @@ const AccountsPage = () => {
   const handleSortChange = newSortBy => {
     setSortBy(newSortBy);
     setOrder(order === 'asc' ? 'desc' : 'asc');
+    setPage(1)
   };
 const handleLoadMore = () => {
   setPage(prevPage => prevPage + 1);

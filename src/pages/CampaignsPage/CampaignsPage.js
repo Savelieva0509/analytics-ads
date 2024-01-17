@@ -87,7 +87,11 @@ const CampaignsPage = () => {
                 className="btn btn-primary"
                 onClick={() => handleSortChange('date')}
               >
-                Sort by date
+                Sort by date{' '}
+                {sortBy === 'date' && order === 'asc' && <FaSortAmountUp />}
+                {sortBy === 'date' && order === 'desc' && (
+                  <FaSortAmountDownAlt />
+                )}
               </button>
             </th>
           </tr>

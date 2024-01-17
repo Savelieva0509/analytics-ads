@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams, Link } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import apiService from '../../Api';
 import { FaSortAmountUp, FaSortAmountDownAlt } from 'react-icons/fa';
 import { FaArrowLeftLong } from 'react-icons/fa6';

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BsArrowUp, BsArrowDown } from 'react-icons/bs';
+import { FaSortAmountUp, FaSortAmountDownAlt } from 'react-icons/fa';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import apiService from '../../Api';
 import './AccountsPage.css';
@@ -65,9 +65,11 @@ const AccountsPage = () => {
                 onClick={() => handleSortChange('creationDate')}
               >
                 Sort by creation date{' '}
-                {sortBy === 'creationDate' && order === 'asc' && <BsArrowUp />}
+                {sortBy === 'creationDate' && order === 'asc' && (
+                  <FaSortAmountUp />
+                )}
                 {sortBy === 'creationDate' && order === 'desc' && (
-                  <BsArrowDown />
+                  <FaSortAmountDownAlt />
                 )}
               </button>
             </th>

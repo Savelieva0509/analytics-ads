@@ -1,7 +1,7 @@
 
 <div style="display: flex; align-items: center;">
-   <div><img src="src/icons/logo.png" alt="logo" width="40" height="40"> </div>
   <h1>Analytics Ads</h1>
+  <img src="src/icons/logo.png" alt="logo" width="40" height="40"> 
 </div>
 
 Web application that allows you to track the effectiveness of advertising

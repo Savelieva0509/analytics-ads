@@ -1,5 +1,8 @@
 
- <img src="src/icons/logo.png" alt="logo" width="40" height="40"> <h1> Analytics Ads </h1>
+ <div display="flex" align-items="center">
+ <img src="src/icons/logo.png" alt="logo" width="40" height="40"> 
+ <h1>Analytics Ads </h1>
+ </div>
 
 Web application that allows you to track the effectiveness of advertising
 campaigns. The application is presented on three pages, every page has a

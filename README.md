@@ -1,6 +1,6 @@
 
 <div style="display: flex; align-items: center;">
-  <img src="src/icons/logo.png" alt="logo" width="40" height="40"> 
+   <div><img src="src/icons/logo.png" alt="logo" width="40" height="40"> </div>
   <h1>Analytics Ads</h1>
 </div>
 

@@ -9,5 +9,5 @@ using the Mockapi service
 **Tools and Technologies Used**
 
 <h3>Frontend:</h3> 
-<span>HTML, CSS, JavaScript, React.js, React Router, Redux, Redux Toolkit, Axios.</span> 
-<h3>Backend:</h3> <span>Mockapi.</span>
+<span>HTML5, CSS, JavaScript, React, Routes, Bootstrap, Axios </span> 
+<h3>Backend:</h3> <span>Mockapi</span>
